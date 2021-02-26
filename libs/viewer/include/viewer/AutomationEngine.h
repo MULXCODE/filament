@@ -124,7 +124,7 @@ public:
     void startRunning();
 
     /**
-     * Activates automation, but enters a paused state until the users calls signalBatchMode().
+     * Activates automation, but enters a paused state until the user calls signalBatchMode().
      */
     void startBatchMode();
 
@@ -164,6 +164,11 @@ public:
     void setOptions(Options options) { mOptions = options; }
 
     /**
+     * Returns true if automation is in batch mode and all tests have finished.
+     */
+    bool shouldClose() const { return mShouldClose; }
+
+    /**
      * Convenience function that writes out a JSON file to disk containing all settings.
      *
      * @param Settings State vector to serialize.
@@ -175,7 +180,6 @@ public:
     bool isRunning() const { return mIsRunning; }
     size_t currentTest() const { return mCurrentTest; }
     size_t testCount() const { return mSpec->size(); }
-    bool shouldClose() const { return mShouldClose; }
     bool isBatchModeEnabled() const { return mBatchModeEnabled; }
     const char* getStatusMessage() const;
 
